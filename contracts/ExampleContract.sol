@@ -21,10 +21,9 @@ interface IVerifier {
 }
 
 interface Hasher {
-    function poseidon(bytes32[2] calldata leftRight)
-        external
-        pure
-        returns (bytes32);
+    function poseidon(
+        bytes32[2] calldata leftRight
+    ) external pure returns (bytes32);
 }
 
 contract MerkleTreeWithHistory {
@@ -69,11 +68,10 @@ contract MerkleTreeWithHistory {
     /**
     @dev Hash 2 tree leaves, returns MiMC(_left, _right)
   */
-    function hashLeftRight(bytes32 _left, bytes32 _right)
-        public
-        view
-        returns (bytes32)
-    {
+    function hashLeftRight(
+        bytes32 _left,
+        bytes32 _right
+    ) public view returns (bytes32) {
         require(
             uint256(_left) < FIELD_SIZE,
             "_left should be inside the field"
@@ -89,7 +87,7 @@ contract MerkleTreeWithHistory {
     function _insert(bytes32 _leaf) internal returns (uint32 index) {
         uint32 currentIndex = nextIndex;
         require(
-            currentIndex != uint32(2)**levels,
+            currentIndex != uint32(2) ** levels,
             "Merkle tree is full. No more leafs can be added"
         );
         nextIndex += 1;
@@ -243,11 +241,9 @@ abstract contract Tornado is MerkleTreeWithHistory, ReentrancyGuard {
         return nullifierHashes[_nullifierHash];
     }
 
-    function isSpentArray(bytes32[] calldata _nullifierHashes)
-        external
-        view
-        returns (bool[] memory spent)
-    {
+    function isSpentArray(
+        bytes32[] calldata _nullifierHashes
+    ) external view returns (bool[] memory spent) {
         spent = new bool[](_nullifierHashes.length);
         for (uint256 i = 0; i < _nullifierHashes.length; i++) {
             if (isSpent(_nullifierHashes[i])) {

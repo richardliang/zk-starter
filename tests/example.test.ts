@@ -1,5 +1,9 @@
 import { assert, expect } from "chai";
-import { ExampleContract__factory, Verifier__factory, ExampleContract } from "../types";
+import {
+    ExampleContract__factory,
+    Verifier__factory,
+    ExampleContract,
+} from "../types";
 
 import { ethers } from "hardhat";
 import { Contract, ContractFactory, BigNumber, BigNumberish } from "ethers";
