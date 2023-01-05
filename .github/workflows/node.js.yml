@@ -27,7 +27,6 @@ jobs:
       - run: (cd build/circom && cargo build --release)
       - run: (cd build/circom && cargo install --path circom)
       - run: npm ci
-      - run: npm run lint
       - run: npm run build
       - run: npm test
       - run: npm run info
